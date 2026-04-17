@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  password      String
+  role          String         @default("student") // admin | student
+  createdAt     DateTime       @default(now())
+  subscriptions Subscription[]
+  progress      Progress[]
+  bookings      Booking[]
+  payments      Payment[]
+}
+
+model Plan {
+  id            String         @id @default(uuid())
+  name          String
+  price         Float
+  durationDays  Int
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id        String   @id @default(uuid())
+  userId    String
+  planId    String
+  status    String   @default("active") // active | expired | canceled
+  startDate DateTime @default(now())
+  endDate   DateTime
+  user      User     @relation(fields: [userId], references: [id])
+  plan      Plan     @relation(fields: [planId], references: [id])
+}
+
+model Class {
+  id          String     @id @default(uuid())
+  title       String
+  description String     @db.Text
+  level       String     @default("beginner") // beginner | intermediate | advanced
+  videoUrl    String
+  duration    Int        // in minutes
+  createdAt   DateTime   @default(now())
+  progress    Progress[]
+  bookings    Booking[]
+}
+
+model Progress {
+  id              String  @id @default(uuid())
+  userId          String
+  classId         String
+  completed       Boolean @default(false)
+  watchedSeconds  Int     @default(0)
+  user            User    @relation(fields: [userId], references: [id])
+  class           Class   @relation(fields: [classId], references: [id])
+}
+
+model Booking {
+  id      String   @id @default(uuid())
+  userId  String
+  classId String
+  date    DateTime
+  status  String   @default("confirmed") // confirmed | canceled
+  user    User     @relation(fields: [userId], references: [id])
+  class   Class    @relation(fields: [classId], references: [id])
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  userId    String
+  amount    Float
+  method    String   // pix | card
+  status    String   @default("pending") // pending | paid | failed
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}

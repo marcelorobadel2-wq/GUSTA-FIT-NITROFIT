@@ -89,7 +89,12 @@ export const Navbar: React.FC = () => {
                 <a href="#depoimentos" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Resultados</a>
                 <a href="#faq" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Dúvidas Frequentes</a>
                 
-                <div className="my-4 border-t border-gray-100"></div>
+                <div className="my-2 border-t border-gray-100"></div>
+                <a href="#templates" onClick={() => setIsMenuOpen(false)} className="text-secondary hover:text-primary transition-colors p-3 rounded-xl hover:bg-secondary/5 font-bold flex items-center gap-2">
+                  <span className="text-xl">✨</span> Galeria de Molduras
+                </a>
+                
+                <div className="my-2 border-t border-gray-100"></div>
                 
                 <a href="#pricing" onClick={() => setIsMenuOpen(false)} className="bg-primary hover:bg-primary/90 text-white rounded-xl p-3 flex items-center justify-between font-bold transition-colors shadow-md">
                   Acessar Planos

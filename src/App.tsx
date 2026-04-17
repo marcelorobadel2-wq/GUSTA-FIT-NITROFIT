@@ -15,15 +15,33 @@ import { WhatsAppButton } from './components/WhatsAppButton';
 import { CookieBanner } from './components/CookieBanner';
 import { UrgencyBanner } from './components/UrgencyBanner';
 import { PaymentModal } from './components/PaymentModal';
+import { TemplatePreview } from './components/TemplatePreview';
 import { getCourseSchema, getFAQSchema } from './utils/schemas';
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState({ name: '', price: '' });
+  const [currentHash, setCurrentHash] = useState(window.location.hash);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   // Smooth scroll to pricing
   const scrollToPricing = () => {
+    if (currentHash === '#templates') {
+      window.location.hash = '';
+      setTimeout(() => {
+        const element = document.getElementById('pricing');
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
     const element = document.getElementById('pricing');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -81,19 +99,26 @@ const App: React.FC = () => {
           >
             <ProgressBar />
             <Navbar />
-            <main>
-              <Hero onCTAClick={scrollToPricing} />
-              <ProblemSection />
-              <SolutionSection />
-              <Testimonials />
-              <Pricing onSelectPlan={handleSelectPlan} />
-              <Guarantee />
-              <FAQ />
-            </main>
-            <Footer />
-            <UrgencyBanner onCTAClick={scrollToPricing} />
-            <WhatsAppButton />
-            <CookieBanner />
+            
+            {currentHash === '#templates' ? (
+              <TemplatePreview />
+            ) : (
+              <>
+                <main>
+                  <Hero onCTAClick={scrollToPricing} />
+                  <ProblemSection />
+                  <SolutionSection />
+                  <Testimonials />
+                  <Pricing onSelectPlan={handleSelectPlan} />
+                  <Guarantee />
+                  <FAQ />
+                </main>
+                <Footer />
+                <UrgencyBanner onCTAClick={scrollToPricing} />
+                <WhatsAppButton />
+                <CookieBanner />
+              </>
+            )}
 
             <PaymentModal 
               isOpen={isPaymentModalOpen} 
