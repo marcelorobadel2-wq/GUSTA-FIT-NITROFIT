@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SplashScreen } from './components/SplashScreen';
 import { ProgressBar } from './components/ProgressBar';
+import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ProblemSection } from './components/ProblemSection';
 import { SolutionSection } from './components/SolutionSection';
@@ -79,6 +80,7 @@ const App: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <ProgressBar />
+            <Navbar />
             <main>
               <Hero onCTAClick={scrollToPricing} />
               <ProblemSection />

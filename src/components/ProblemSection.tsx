@@ -18,7 +18,7 @@ export const ProblemSection: React.FC = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           
-          <div className="lg:w-1/3 sticky top-24">
+          <div className="lg:w-1/3 static lg:sticky lg:top-24">
             <span className="text-secondary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">O Problema</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-gray-900 mb-6 leading-tight">
               Cansada de Viver com <span className="text-error italic">Limitações</span>?
