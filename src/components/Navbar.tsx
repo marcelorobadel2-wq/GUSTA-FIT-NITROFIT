@@ -14,6 +14,12 @@ export const Navbar: React.FC = () => {
     e.preventDefault();
     setIsMenuOpen(false);
     
+    if (hash === '') {
+      window.location.hash = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (window.location.hash === '#templates' && hash !== '#templates') {
       window.location.hash = hash;
       setTimeout(() => {
