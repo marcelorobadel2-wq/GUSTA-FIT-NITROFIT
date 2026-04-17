@@ -4,6 +4,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 
+// Routes imports
+import authRoutes from "./backend/routes/authRoutes.js";
+import classRoutes from "./backend/routes/classRoutes.js";
+
 dotenv.config();
 
 async function startServer() {
@@ -17,6 +21,10 @@ async function startServer() {
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", message: "Gusta Fitness API is running! 🚀" });
   });
+
+  // Registrando modulos
+  app.use("/api/auth", authRoutes);
+  app.use("/api/classes", classRoutes);
 
   // Integração do Vite como Middleware (Para exibir o Frontend)
   if (process.env.NODE_ENV !== "production") {
