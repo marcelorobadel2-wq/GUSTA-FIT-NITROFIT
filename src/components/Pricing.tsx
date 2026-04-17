@@ -45,7 +45,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 items-stretch">
           
           {/* Monthly Plan */}
-          <div className="bg-[#242F27] rounded-3xl p-8 md:p-10 border border-white/5 flex flex-col items-center text-center group transition-all duration-500 hover:border-secondary/30">
+          <div className="order-2 lg:order-1 bg-[#242F27] rounded-3xl p-8 md:p-10 border border-white/5 flex flex-col items-center text-center group transition-all duration-500 hover:border-secondary/30">
             <h3 className="text-xl md:text-2xl font-bold text-gray-400 mb-2 uppercase tracking-widest text-sm">Assinatura Mensal</h3>
             <div className="my-8">
               <span className="text-sm text-gray-500 line-through block mb-2">R$ 69,90</span>
@@ -90,9 +90,9 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
           {/* LIFETIME OFFER - Highlighted */}
           <motion.div 
             whileHover={{ y: -12 }}
-            className="bg-primary rounded-3xl p-8 md:p-12 border-2 border-secondary shadow-[0_32px_64px_-16px_rgba(74,93,78,0.5)] relative flex flex-col items-center text-center z-20 scale-105"
+            className="order-1 lg:order-2 bg-primary rounded-3xl p-8 md:p-12 border-2 border-secondary shadow-[0_32px_64px_-16px_rgba(74,93,78,0.5)] relative flex flex-col items-center text-center z-20 lg:scale-105"
           >
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-accent text-white px-6 py-2 rounded-full text-xs md:text-sm font-black shadow-2xl uppercase tracking-tighter">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-accent text-white px-6 py-2 rounded-full text-xs md:text-sm font-black shadow-2xl uppercase tracking-tighter w-max">
               A Escolha de 90% das Alunas
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Acesso VITALÍCIO</h3>
@@ -147,7 +147,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
           </motion.div>
 
           {/* Annual Plan */}
-          <div className="bg-[#242F27] rounded-3xl p-8 md:p-10 border border-white/5 flex flex-col items-center text-center group transition-all duration-500 hover:border-secondary/30">
+          <div className="order-3 lg:order-3 bg-[#242F27] rounded-3xl p-8 md:p-10 border border-white/5 flex flex-col items-center text-center group transition-all duration-500 hover:border-secondary/30">
             <h3 className="text-xl md:text-2xl font-bold text-gray-400 mb-2 uppercase tracking-widest text-sm">Assinatura Anual</h3>
             <div className="my-8">
               <span className="text-sm text-gray-500 line-through block mb-2">R$ 598,00</span>

@@ -49,7 +49,7 @@ export const SolutionSection: React.FC = () => {
               transition={{ delay: index * 0.15, duration: 0.6 }}
               className="group"
             >
-              <div className="bg-neutral-warm rounded-[2rem] p-10 h-full border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden">
+              <div className="bg-neutral-warm rounded-3xl md:rounded-[2rem] p-8 md:p-10 h-full border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-3 relative overflow-hidden">
                 {/* Accent line on hover */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 

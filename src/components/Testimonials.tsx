@@ -49,32 +49,32 @@ export const Testimonials: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-neutral-warm p-10 rounded-[2.5rem] relative flex flex-col group hover:bg-primary/5 transition-colors duration-500"
+              className="bg-neutral-warm p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] relative flex flex-col group hover:bg-primary/5 transition-colors duration-500"
             >
-              <Quote className="absolute top-8 right-8 text-primary/10 w-16 h-16 pointer-events-none group-hover:text-primary/20 transition-colors" />
+              <Quote className="absolute top-6 md:top-8 right-6 md:right-8 text-primary/10 w-12 h-12 md:w-16 md:h-16 pointer-events-none group-hover:text-primary/20 transition-colors" />
               
-              <div className="flex items-center gap-4 mb-8">
-                <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-2xl object-cover shadow-lg border-2 border-white" />
+              <div className="flex items-center gap-4 mb-6 md:mb-8">
+                <img src={t.avatar} alt={t.name} className="w-12 h-12 md:w-14 md:h-14 rounded-2xl object-cover shadow-lg border-2 border-white" />
                 <div>
                   <h4 className="font-bold text-gray-900 leading-tight">{t.name}</h4>
                   <p className="text-xs text-gray-400 font-medium">{t.age} anos • Aluna Vitalícia</p>
                 </div>
               </div>
 
-              <div className="flex text-yellow-500 mb-6 gap-0.5">
+              <div className="flex text-yellow-500 mb-4 md:mb-6 gap-0.5">
                 {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
               </div>
 
-              <p className="text-lg text-gray-700 font-light leading-relaxed italic mb-4">
+              <p className="text-base md:text-lg text-gray-700 font-light leading-relaxed italic mb-4">
                 "{t.text}"
               </p>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-20 text-center">
-            <p className="text-gray-400 text-sm font-medium uppercase tracking-[0.2em]">
-                Únete a +15,000 mulheres satisfeitas
+        <div className="mt-16 md:mt-20 text-center">
+            <p className="text-gray-400 text-xs md:text-sm font-medium uppercase tracking-[0.2em]">
+                Junte-se a +15.000 mulheres satisfeitas
             </p>
         </div>
       </div>
