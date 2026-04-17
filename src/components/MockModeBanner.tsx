@@ -23,12 +23,26 @@ export const MockModeBanner: React.FC = () => {
   useEffect(() => {
     if (isMock) {
       document.body.classList.add('mock-banner-active');
-    } else {
-      document.body.classList.remove('mock-banner-active');
+      const updateHeight = () => {
+        const el = document.getElementById('mock-banner');
+        if (el) {
+          document.body.style.setProperty('--mock-banner-height', `${el.offsetHeight}px`);
+        }
+      };
+      
+      // Allow minor delay for render
+      setTimeout(updateHeight, 50);
+      window.addEventListener('resize', updateHeight);
+
+      return () => {
+        document.body.classList.remove('mock-banner-active');
+        document.body.style.removeProperty('--mock-banner-height');
+        window.removeEventListener('resize', updateHeight);
+      };
     }
-    return () => document.body.classList.remove('mock-banner-active');
   }, [isMock]);
 
+  // ... (switch handler omitted for brevity, keeping it identical)
   const switchToMySql = async () => {
     const confirmation = window.confirm("Isso tentará ligar o sistema diretamente no banco MySQL definido no seu arquivo .env.\n\nSe o banco não estiver configurado ou online, o sistema vai gerar erro. Continuar?");
     
@@ -48,17 +62,21 @@ export const MockModeBanner: React.FC = () => {
   if (loading || !isMock) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-red-600 text-white font-black py-2.5 px-4 flex flex-col md:flex-row justify-between items-center z-[100] text-xs sm:text-sm shadow-xl transition-all duration-300">
-      <div className="flex items-center gap-3 mb-2 md:mb-0">
-        <span className="text-xl animate-pulse">⚠️</span>
-        <span className="tracking-wide">
-          MODO MOCKUP ATIVO (SIMULAÇÃO FANTASMA) - DADOS NÃO ESTÃO INDO PARA O BANCO DE DADOS
+    <div 
+      id="mock-banner"
+      className="fixed top-0 left-0 w-full bg-red-600 text-white font-black py-3 px-4 flex flex-col md:flex-row justify-between items-center z-[100] text-xs sm:text-sm shadow-xl transition-all duration-300"
+      style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}
+    >
+      <div className="flex items-center text-center md:text-left gap-2 mb-3 md:mb-0">
+        <span className="text-2xl animate-pulse">⚠️</span>
+        <span className="tracking-wide leading-tight">
+          MODO MOCKUP ATIVO (SIMULAÇÃO FANTASMA) - DADOS NÃO VÃO PRO BANCO
         </span>
       </div>
       
       <button 
         onClick={switchToMySql} 
-        className="bg-white hover:bg-gray-100 text-red-600 px-5 py-1.5 rounded-full uppercase tracking-wider font-bold transition-all shadow-md active:scale-95"
+        className="bg-white hover:bg-gray-100 text-red-600 px-5 py-2 rounded-full uppercase tracking-wider font-bold transition-all shadow-md active:scale-95 w-full md:w-auto"
       >
         Ligar MySQL (Produção)
       </button>

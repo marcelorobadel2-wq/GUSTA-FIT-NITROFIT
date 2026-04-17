@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import { prisma } from './prismaClient.js';
 
 // Retorna true por padrão a menos que esteja explicitamente false no .env
 export let isMockMode = process.env.USE_MOCK !== 'false';
@@ -7,6 +8,18 @@ export const setMockMode = (mode: boolean) => {
   isMockMode = mode;
   console.log(`[SYS] Banco de Dados operando em modo: ${isMockMode ? 'MOCKUP' : 'MYSQL_REAL'}`);
 };
+
+// Se disseram que não é mock, vamos testar o banco real. Se falhar, resgata pro mockup!
+if (!isMockMode) {
+  prisma.$connect()
+    .then(() => {
+      console.log('[SYS] Conexão MySQL Real confirmada na inicialização.');
+    })
+    .catch((err) => {
+      console.error('[SYS] Falha ao conectar no MySQL na inicialização. Revertendo para MODO MOCKUP de emergência.', err.message);
+      setMockMode(true);
+    });
+}
 
 // Gerar uma senha hash de teste para facilitar o login mockup imediato
 const salt = bcrypt.genSaltSync(10);

@@ -26,6 +26,10 @@ const App: React.FC = () => {
   const [currentHash, setCurrentHash] = useState(window.location.hash);
 
   useEffect(() => {
+    if (window.location.hash === '#templates') {
+      window.location.hash = '';
+      setCurrentHash('');
+    }
     const handleHashChange = () => {
       setCurrentHash(window.location.hash);
     };
@@ -88,6 +92,7 @@ const App: React.FC = () => {
 
   return (
     <div className="font-sans text-gray-800 antialiased selection:bg-primary selection:text-white">
+      <MockModeBanner />
       <AnimatePresence mode="wait">
         {loading ? (
           <SplashScreen key="splash" onComplete={() => setLoading(false)} />
@@ -98,7 +103,6 @@ const App: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <MockModeBanner />
             <ProgressBar />
             <Navbar />
             

@@ -23,11 +23,11 @@
 
 /* Compensar altura da Barra de Mockup Fixa no topo de 48px */
 body.mock-banner-active nav {
-  top: 48px !important;
+  top: var(--mock-banner-height, 100px) !important;
 }
 
 body.mock-banner-active main section.pt-24 {
-  padding-top: 8rem; /* 128px */
+  padding-top: calc(8rem + var(--mock-banner-height, 100px)); 
 }
 
 @layer components {

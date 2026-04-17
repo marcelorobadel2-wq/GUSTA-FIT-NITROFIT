@@ -60,12 +60,14 @@ export const Navbar: React.FC = () => {
             <input 
               type="email" 
               placeholder="E-mail" 
+              defaultValue="admin@teste.com"
               className="w-[90px] sm:w-[140px] md:w-48 px-2 sm:px-3 py-1.5 sm:py-2 text-[11px] sm:text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-gray-400"
               required
             />
             <input 
               type="password" 
-              placeholder="Senha" 
+              placeholder="Senha"
+              defaultValue="123456" 
               className="w-[90px] sm:w-[140px] md:w-48 px-2 sm:px-3 py-1.5 sm:py-2 text-[11px] sm:text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-gray-400"
               required
             />
