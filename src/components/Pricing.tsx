@@ -83,7 +83,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
             </AnimatePresence>
 
             <div className="mt-auto w-full">
-              <Button variant="white" fullWidth onClick={() => onSelectPlan('Mensal', 'R$ 49,90')} size="lg" className="bg-transparent border border-white/20 text-white hover:bg-white hover:text-primary">ASSINAR MENSAL</Button>
+              <Button variant="white" fullWidth onClick={() => onSelectPlan('Mensal', 'R$ 49,90')} size="lg" className="bg-transparent border border-white/20 text-white hover:bg-white hover:text-gray-900">ASSINAR MENSAL</Button>
             </div>
           </div>
 
@@ -185,7 +185,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
             </AnimatePresence>
 
             <div className="mt-auto w-full">
-              <Button variant="white" fullWidth onClick={() => onSelectPlan('Anual', 'R$ 197,00')} size="lg" className="bg-transparent border border-white/20 text-white hover:bg-white hover:text-primary">ASSINAR ANUAL</Button>
+              <Button variant="white" fullWidth onClick={() => onSelectPlan('Anual', 'R$ 197,00')} size="lg" className="bg-transparent border border-white/20 text-white hover:bg-white hover:text-gray-900">ASSINAR ANUAL</Button>
             </div>
           </div>
 

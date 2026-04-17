@@ -52,7 +52,11 @@ export const TemplatePreview: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-20">
       <div className="container mx-auto px-4 max-w-6xl">
-        <a href="#" className="inline-flex items-center text-gray-500 hover:text-primary transition-colors mb-8 font-medium">
+        <a 
+          href="#" 
+          onClick={(e) => { e.preventDefault(); window.location.hash = ''; }} 
+          className="inline-flex items-center text-gray-500 hover:text-primary transition-colors mb-8 font-medium cursor-pointer"
+        >
           <ChevronLeft size={20} className="mr-1" /> Voltar para o Início
         </a>
         

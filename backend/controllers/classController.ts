@@ -1,20 +1,39 @@
 import { Request, Response } from 'express';
 import { prisma } from '../prismaClient.js';
+import { isMockMode, mockDb } from '../mockState.js';
 
 export const getClasses = async (req: Request, res: Response) => {
   try {
+    if (isMockMode) {
+      return res.json(mockDb.classes);
+    }
+
     const classes = await prisma.class.findMany({
       orderBy: { createdAt: 'asc' }
     });
-    res.json(classes);
+    return res.json(classes);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar aulas.' });
+    return res.status(500).json({ error: 'Erro ao buscar aulas.' });
   }
 };
 
 export const createClass = async (req: Request, res: Response) => {
   try {
     const { title, description, level, videoUrl, duration } = req.body;
+
+    if (isMockMode) {
+      const newClass = {
+        id: `class-${Date.now()}`,
+        title,
+        description,
+        level,
+        videoUrl,
+        duration: parseInt(duration) || 0,
+        createdAt: new Date()
+      };
+      mockDb.classes.push(newClass);
+      return res.status(201).json(newClass);
+    }
 
     const newClass = await prisma.class.create({
       data: {
@@ -25,9 +44,8 @@ export const createClass = async (req: Request, res: Response) => {
         duration: parseInt(duration) || 0
       }
     });
-
-    res.status(201).json(newClass);
+    return res.status(201).json(newClass);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar aula.' });
+    return res.status(500).json({ error: 'Erro ao criar aula.' });
   }
 };

@@ -32,7 +32,7 @@ export const Testimonials: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-white overflow-hidden">
+    <section id="depoimentos" className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16 md:mb-24">
           <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Resultados Reais</span>

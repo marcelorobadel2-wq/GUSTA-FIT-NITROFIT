@@ -7,6 +7,7 @@ import path from "path";
 // Routes imports
 import authRoutes from "./backend/routes/authRoutes.js";
 import classRoutes from "./backend/routes/classRoutes.js";
+import configRoutes from "./backend/routes/configRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ async function startServer() {
   // Registrando modulos
   app.use("/api/auth", authRoutes);
   app.use("/api/classes", classRoutes);
+  app.use("/api/config", configRoutes);
 
   // Integração do Vite como Middleware (Para exibir o Frontend)
   if (process.env.NODE_ENV !== "production") {

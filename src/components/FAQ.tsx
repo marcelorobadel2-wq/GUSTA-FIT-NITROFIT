@@ -15,7 +15,7 @@ export const FAQ: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section id="faq" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4 max-w-3xl">
         <h2 className="text-2xl sm:text-3xl font-bold text-center font-heading mb-10 md:mb-12 text-gray-900">
           Perguntas Frequentes

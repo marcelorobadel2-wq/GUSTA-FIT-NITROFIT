@@ -10,6 +10,27 @@ export const Navbar: React.FC = () => {
     alert("Esta área de membros está em construção! (Em breve)");
   };
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    
+    if (window.location.hash === '#templates' && hash !== '#templates') {
+      window.location.hash = hash;
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.location.hash = hash;
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <>
       <nav className="fixed top-1.5 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
@@ -84,19 +105,19 @@ export const Navbar: React.FC = () => {
               </div>
               
               <div className="p-5 flex flex-col gap-2 text-gray-600 font-medium">
-                <a href="#" className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Início</a>
-                <a href="#solucao" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">O Método</a>
-                <a href="#depoimentos" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Resultados</a>
-                <a href="#faq" onClick={() => setIsMenuOpen(false)} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Dúvidas Frequentes</a>
+                <a href="#" onClick={(e) => handleNavigation(e, '')} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Início</a>
+                <a href="#solucao" onClick={(e) => handleNavigation(e, '#solucao')} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">O Método</a>
+                <a href="#depoimentos" onClick={(e) => handleNavigation(e, '#depoimentos')} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Resultados</a>
+                <a href="#faq" onClick={(e) => handleNavigation(e, '#faq')} className="hover:text-primary transition-colors p-3 rounded-xl hover:bg-primary/5">Dúvidas Frequentes</a>
                 
                 <div className="my-2 border-t border-gray-100"></div>
-                <a href="#templates" onClick={() => setIsMenuOpen(false)} className="text-secondary hover:text-primary transition-colors p-3 rounded-xl hover:bg-secondary/5 font-bold flex items-center gap-2">
+                <a href="#templates" onClick={(e) => handleNavigation(e, '#templates')} className="text-secondary hover:text-primary transition-colors p-3 rounded-xl hover:bg-secondary/5 font-bold flex items-center gap-2">
                   <span className="text-xl">✨</span> Galeria de Molduras
                 </a>
                 
                 <div className="my-2 border-t border-gray-100"></div>
                 
-                <a href="#pricing" onClick={() => setIsMenuOpen(false)} className="bg-primary hover:bg-primary/90 text-white rounded-xl p-3 flex items-center justify-between font-bold transition-colors shadow-md">
+                <a href="#pricing" onClick={(e) => handleNavigation(e, '#pricing')} className="bg-primary hover:bg-primary/90 text-white rounded-xl p-3 flex items-center justify-between font-bold transition-colors shadow-md">
                   Acessar Planos
                   <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-wider">Oferta</span>
                 </a>

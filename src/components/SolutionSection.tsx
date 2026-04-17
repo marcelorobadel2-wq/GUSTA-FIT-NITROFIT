@@ -23,7 +23,7 @@ export const SolutionSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-white relative">
+    <section id="solucao" className="py-24 md:py-32 bg-white relative">
       {/* Subtle grid background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden" 
            style={{ backgroundImage: 'radial-gradient(#4A5D4E 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
